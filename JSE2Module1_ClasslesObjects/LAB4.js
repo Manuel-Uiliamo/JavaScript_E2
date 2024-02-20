@@ -13,13 +13,23 @@ Do not rewrite the constructor. Use prototypes for this purpose. Then modify the
     this.title = title;
     this.artist = artist;
     this.date = date;
+    this.show1 = function(){
+        return this.Image
+    }
 };
+Image.prototype.show = function(){
+    console.log(`${this.title}: ${this.artist}: ${this.date}`);
+}
 
 let testObj = {
 
     list:[],
 
-    show() {return console.log(Object.values(this.list))},
+    show: function(title){
+        for (image of this.list){
+            image.show();
+        }
+    },
 
     add: function(title, artist, date){
         if (!this.contains(title)){
@@ -36,7 +46,6 @@ let testObj = {
                 break;
             }
         }
-        // console.log(check);
         return check;
     },
 
@@ -57,12 +66,10 @@ let testObj = {
         }
     }
 };
-
 testObj.add('Mona Lisa', 'Leonardo da Vinci', 1503);
 testObj.add('The Last Supper', 'Leonardo da Vinci', 1495);
 testObj.add('The Starry Night', 'Vincent van Gogh', 1889);
-testObj.show();
-
-testObj.del('The Starry Night');
-console.log("After edition!!!!!!");
+testObj.add("The Scream", "Edvard Munch", 1893);
+testObj.edit('Mona Lisa', 'Leonardo da Vinci', 1504);
+testObj.del('The Last Supper');
 testObj.show();
